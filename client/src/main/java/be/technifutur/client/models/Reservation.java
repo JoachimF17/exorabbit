@@ -13,7 +13,8 @@ public class Reservation
     private LocalDate depart;
     private Status status;
 
-    public static enum Status {
+    public static enum Status
+    {
         DEMANDE,
         FACTURE
     }
