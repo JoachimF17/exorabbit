@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public abstract class ReservationService
 {
-    private final List<Reservation> list = new ArrayList<>();
+    protected final List<Reservation> list = new ArrayList<>();
 
     public abstract void create(Reservation reservation);
 

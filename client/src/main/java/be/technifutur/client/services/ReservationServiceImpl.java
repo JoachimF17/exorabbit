@@ -16,7 +16,7 @@ public class ReservationServiceImpl extends ReservationService
     @Override
     public void setToFacture(UUID ref)
     {
-
+        list.stream().filter((r) -> r.getRef() == ref).findFirst(); //TODO: demain
     }
 
     @Override
