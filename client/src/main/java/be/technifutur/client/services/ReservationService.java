@@ -1,6 +1,7 @@
 package be.technifutur.client.services;
 
 import be.technifutur.client.models.Reservation;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,7 @@ public abstract class ReservationService
 {
     protected List<Reservation> list = new ArrayList<>();
 
-    public abstract void create(Reservation reservation);
+    public abstract void create(Reservation reservation) throws JsonProcessingException;
 
     public abstract void setToFacture(UUID ref);
 

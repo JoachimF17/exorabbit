@@ -1,12 +1,16 @@
-package be.technifutur.client.models;
+package be.technifutur.facture.models;
 
+import be.technifutur.facture.rabbit.FactureListener;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Data
+@AllArgsConstructor @NoArgsConstructor
 public class Reservation implements Serializable
 {
     private UUID ref;
@@ -18,13 +22,5 @@ public class Reservation implements Serializable
     {
         DEMANDE,
         FACTURE
-    }
-
-    public Reservation(UUID ref, LocalDate arrive, LocalDate depart)
-    {
-        this.ref = ref;
-        this.arrive = arrive;
-        this.depart = depart;
-        this.status = Status.DEMANDE;
     }
 }

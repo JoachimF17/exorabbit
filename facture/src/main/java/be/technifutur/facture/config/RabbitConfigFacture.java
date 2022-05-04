@@ -1,6 +1,7 @@
 package be.technifutur.facture.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
@@ -8,15 +9,16 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class RabbitConfigFacture
 {
     @Bean
-    public ObjectMapper mapper()
+    public ObjectMapper objectMapper()
     {
-        return new ObjectMapper();
+        return new ObjectMapper().registerModule(new JavaTimeModule());
     }
-
     @Bean
     public RabbitAdmin rabbitAdmin(ConnectionFactory connectionFactory)
     {
@@ -29,7 +31,7 @@ public class RabbitConfigFacture
         return new Queue("facture_queue");
     }
 
-    @Bean("reserv_queue")
+    @Bean("reserv_Queue")
     public Queue reservQueue()
     {
         return new Queue("reserv_queue");
@@ -42,14 +44,8 @@ public class RabbitConfigFacture
     }
 
     @Bean
-    public Binding fBind(DirectExchange directExchange, Queue factureQueue)
+    public Binding fBind(DirectExchange directExchange, Queue facture_queue)
     {
-        return BindingBuilder.bind(factureQueue).to(directExchange).with("facture");
-    }
-
-    @Bean
-    public Binding rBind(DirectExchange directExchange, Queue reservQueue)
-    {
-        return BindingBuilder.bind(reservQueue).to(directExchange).with("reserv");
+        return BindingBuilder.bind(facture_queue).to(directExchange).with("facture");
     }
 }

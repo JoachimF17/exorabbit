@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -42,14 +41,8 @@ public class RabbitConfigClient
     }
 
     @Bean
-    public Binding fBind(DirectExchange directExchange, Queue factureQueue)
+    public Binding rBind(DirectExchange directExchange, Queue reserv_queue)
     {
-        return BindingBuilder.bind(factureQueue).to(directExchange).with("facture");
-    }
-
-    @Bean
-    public Binding rBind(DirectExchange directExchange, Queue reservQueue)
-    {
-        return BindingBuilder.bind(reservQueue).to(directExchange).with("reserv");
+        return BindingBuilder.bind(reserv_queue).to(directExchange).with("reserv");
     }
 }

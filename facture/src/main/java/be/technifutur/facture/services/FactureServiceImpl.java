@@ -2,12 +2,16 @@ package be.technifutur.facture.services;
 
 import be.technifutur.facture.models.Facture;
 import be.technifutur.facture.rabbit.FactureSender;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.UUID;
 
 public class FactureServiceImpl extends FactureService
 {
+    private final Logger logger = LoggerFactory.getLogger(FactureServiceImpl.class);
     private static FactureServiceImpl _INSTANCE;
 
     public static FactureServiceImpl getInstance()
@@ -19,10 +23,12 @@ public class FactureServiceImpl extends FactureService
     }
 
     @Override
-    public void createFacture(int nbNuits, UUID reservRef)
+    public void createFacture(int nbNuits, UUID reservRef) throws JsonProcessingException
     {
-        factures.add(new Facture(50*nbNuits, reservRef));
+        Facture f = new Facture(50*nbNuits, reservRef);
+        factures.add(f);
         FactureSender.sendFactureToClient(reservRef);
+        logger.info("FACTURE : "+f);
     }
 
     @Override
