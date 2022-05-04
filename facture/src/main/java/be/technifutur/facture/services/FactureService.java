@@ -10,7 +10,7 @@ public abstract class FactureService
 {
     protected List<Facture> factures = new ArrayList<>();
 
-    public abstract void createFacture(int nbNuit, UUID reservRef);
+    public abstract void createFacture(int nbNuits, UUID reservRef);
 
     public abstract List<Facture> getFactures();
 }

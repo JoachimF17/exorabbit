@@ -8,10 +8,20 @@ import java.util.UUID;
 
 public class FactureServiceImpl extends FactureService
 {
-    @Override
-    public void createFacture(int nbNuit, UUID reservRef)
+    private static FactureServiceImpl _INSTANCE;
+
+    public static FactureServiceImpl getInstance()
     {
-        factures.add(new Facture(50*nbNuit, reservRef));
+        if(_INSTANCE == null)
+            _INSTANCE = new FactureServiceImpl();
+
+        return _INSTANCE;
+    }
+
+    @Override
+    public void createFacture(int nbNuits, UUID reservRef)
+    {
+        factures.add(new Facture(50*nbNuits, reservRef));
         FactureSender.sendFactureToClient(reservRef);
     }
 

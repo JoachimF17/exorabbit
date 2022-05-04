@@ -17,6 +17,6 @@ public class FactureSender
 
     public static void sendFactureToClient(UUID reservRef)
     {
-        rabbitTemplate.convertAndSend(reservRef);
+        rabbitTemplate.convertAndSend("demo.direct","facture", reservRef.toString());
     }
 }

@@ -8,11 +8,20 @@ import java.util.UUID;
 
 public class ReservationServiceImpl extends ReservationService
 {
+    private static ReservationServiceImpl _INSTANCE;
     @Override
     public void create(Reservation reservation)
     {
         list.add(reservation);
         ClientSender.sendReservToFacture(reservation);
+    }
+
+    public static ReservationServiceImpl getInstance()
+    {
+        if(_INSTANCE == null)
+            _INSTANCE = new ReservationServiceImpl();
+
+        return _INSTANCE;
     }
 
     @Override
