@@ -18,4 +18,12 @@ public class Reservation
         DEMANDE,
         FACTURE
     }
+
+    public Reservation(UUID ref, LocalDate arrive, LocalDate depart)
+    {
+        this.ref = ref;
+        this.arrive = arrive;
+        this.depart = depart;
+        this.status = Status.DEMANDE;
+    }
 }
