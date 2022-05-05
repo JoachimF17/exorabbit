@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class FactureServiceImpl extends FactureService
@@ -35,5 +36,12 @@ public class FactureServiceImpl extends FactureService
     public List<Facture> getFactures()
     {
         return factures;
+    }
+
+    public double getPrixParReference(UUID ref)
+    {
+        return factures.stream()
+                .filter((f) -> f.getReservRef().equals(ref))
+                .findFirst().map(Facture::getPrix).orElse(-1.0);
     }
 }

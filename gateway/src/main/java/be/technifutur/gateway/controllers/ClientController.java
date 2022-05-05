@@ -28,4 +28,10 @@ public class ClientController
     {
         return template.getForObject("http://localhost:8081/reserv", Object.class);
     }
+
+    @GetMapping("/{id}")
+    public Object getReservationAvecPrix(@PathVariable int id)
+    {
+        return template.getForObject("http://localhost:8081/reserv/"+id, Object.class);
+    }
 }
