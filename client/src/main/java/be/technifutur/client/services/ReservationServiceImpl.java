@@ -1,6 +1,5 @@
 package be.technifutur.client.services;
 
-import be.technifutur.client.models.Facture;
 import be.technifutur.client.models.Reservation;
 import be.technifutur.client.rabbit.ClientSender;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -30,15 +29,14 @@ public class ReservationServiceImpl extends ReservationService
     }
 
     @Override
-    public void setToFacture(Facture facture)
+    public void setToFacture(UUID ref)
     {
         list.stream()
-            .filter((r) -> r.getRef().equals(facture.getReservRef()))
+            .filter((r) -> r.getRef().equals(ref))
             .findFirst()
             .ifPresent((r) ->
             {
                 r.setStatus(Reservation.Status.FACTURE);
-                r.setPrix(facture.getPrix());
                 logger.info("RESERVATION UUID : <"+r.getRef()+"> FACTUREE AVEC SUCCES");
             });
     }

@@ -27,7 +27,7 @@ public class FactureServiceImpl extends FactureService
     {
         Facture f = new Facture(50*nbNuits, reservRef);
         factures.add(f);
-        FactureSender.sendFactureToClient(f);
+        FactureSender.sendFactureToClient(reservRef);
         logger.info("FACTURE : "+f);
     }
 
