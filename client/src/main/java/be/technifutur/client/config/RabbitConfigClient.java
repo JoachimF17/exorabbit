@@ -1,6 +1,7 @@
 package be.technifutur.client.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
@@ -10,11 +11,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitConfigClient
 {
-    @Bean
-    public ObjectMapper mapper()
-    {
-        return new ObjectMapper();
-    }
+//    @Bean
+//    public ObjectMapper mapper()
+//    {
+//        return new ObjectMapper().registerModule(new JavaTimeModule());
+//    }
 
     @Bean
     public RabbitAdmin rabbitAdmin(ConnectionFactory connectionFactory)

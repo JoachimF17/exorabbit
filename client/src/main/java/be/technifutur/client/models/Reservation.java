@@ -20,6 +20,14 @@ public class Reservation implements Serializable
         FACTURE
     }
 
+    public Reservation(LocalDate arrive, LocalDate depart)
+    {
+        this.ref = UUID.randomUUID();
+        this.arrive = arrive;
+        this.depart = depart;
+        this.status = Status.DEMANDE;
+    }
+
     public Reservation(UUID ref, LocalDate arrive, LocalDate depart)
     {
         this.ref = ref;
