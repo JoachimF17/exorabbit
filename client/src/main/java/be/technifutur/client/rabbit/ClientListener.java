@@ -1,5 +1,6 @@
 package be.technifutur.client.rabbit;
 
+import be.technifutur.client.models.Facture;
 import be.technifutur.client.services.ReservationServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,10 +20,10 @@ public class ClientListener
     {
         ReservationServiceImpl rsi = ReservationServiceImpl.getInstance();
         ObjectMapper mapper = new ObjectMapper();
-        UUID ref = mapper.readValue(message, UUID.class);
+        Facture f = mapper.readValue(message, Facture.class);
 
         logger.info("--- FACTURE RECUE ---");
-        rsi.setToFacture(ref);
+        rsi.setToFacture(f);
         logger.info("--- RESERVATION FACTUREE ---");
     }
 }

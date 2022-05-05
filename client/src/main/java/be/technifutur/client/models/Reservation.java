@@ -13,6 +13,7 @@ public class Reservation implements Serializable
     private LocalDate arrive;
     private LocalDate depart;
     private Status status;
+    private double prix;
 
     public static enum Status
     {
